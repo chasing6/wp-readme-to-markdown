@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:       WP Readme to Markdown
  * Plugin URI:        https://github.com/chasing6/wp-readme-to-markdown
- * Description:       Create a form driven polar chart.
+ * Description:       Converts the readme.txt file into markdown for github, etc.
  * Version:           0.1.0
  * Author:            Scott McCoy
  * Author URI:        https://github.com/chasing6/
@@ -32,8 +32,7 @@ class WP_Readme_To_Markdown{
 
   static function load(){
     add_action( 'wp_rtm/add', array( __CLASS__, 'add'), 10, 4 );
-
-    add_filter( 'wp_rtm/convert', array( __CLASS__, 'convert') );
+    add_action( 'plugins_loaded', array( __CLASS__, 'convert_files') );
   }
 
   static function add( $namespace, $filepath, $readme = 'readme.txt', $markdown = 'MARKDOWN.md'){
@@ -46,19 +45,35 @@ class WP_Readme_To_Markdown{
 
   }
 
-  static function convert(){
-    return self::$files;
-  }
-}
+  static function convert_files(){
 
-add_action( 'plugins_loaded', function(){
-  WP_Readme_To_Markdown::load();
-} );
+    $files = apply_filters( 'wp_rtm/files', self::$files );
+
+    // TODO: add a way to append or prepend the markdown file
+
+    // TODO: actually convert the file!
+    do_action( 'add_debug_info', $files, 'Readme to Markdown Conversions');
+  }
+
+}
 
 WP_Readme_To_Markdown::load();
-do_action( 'wp_rtm/add', 'this-file', plugin_dir_path(__FILE__) );
-function convert_rtm() {
-  $files = apply_filters( 'wp_rtm/convert', array() );
-  do_action( 'add_debug_info', $files);
+
+// let's convert this plugin's file!
+do_action( 'wp_rtm/add', 'wp-rtm', plugin_dir_path(__FILE__) );
+
+// make sure this is the first plugin loaded,
+// so that we can use the wp_rtm/add action filter reliably;
+function load_wp_rtm_first() {
+	// ensure path to this file is via main wp plugin path
+	$wp_path_to_this_file = preg_replace('/(.*)plugins\/(.*)$/', WP_PLUGIN_DIR."/$2", __FILE__);
+	$this_plugin = plugin_basename(trim($wp_path_to_this_file));
+	$active_plugins = get_option('active_plugins');
+	$this_plugin_key = array_search($this_plugin, $active_plugins);
+	if ($this_plugin_key) { // if it's 0 it's the first plugin already, no need to continue
+		array_splice($active_plugins, $this_plugin_key, 1);
+		array_unshift($active_plugins, $this_plugin);
+		update_option('active_plugins', $active_plugins);
+	}
 }
-add_action( 'wp_footer', 'convert_rtm' );
+add_action("activated_plugin", "load_wp_rtm_first");
