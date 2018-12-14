@@ -1,0 +1,49 @@
+[
+    {
+        "name": "wpreadme2markdown/wpreadme2markdown",
+        "version": "3.0.1",
+        "version_normalized": "3.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wpreadme2markdown/wp-readme-to-markdown.git",
+            "reference": "8066915828bb05a12b44360cda986e1d9e60047e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wpreadme2markdown/wp-readme-to-markdown/zipball/8066915828bb05a12b44360cda986e1d9e60047e",
+            "reference": "8066915828bb05a12b44360cda986e1d9e60047e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">= 5.3.3"
+        },
+        "time": "2017-11-24T20:36:13+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "WPReadme2Markdown\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Benjamin J. Balter"
+            },
+            {
+                "name": "Christian Archer",
+                "email": "sunchaser@sunchaser.info"
+            }
+        ],
+        "description": "Convert WordPress Plugin readme.txt to Markdown",
+        "keywords": [
+            "converter",
+            "markdown",
+            "readme",
+            "wordpress"
+        ]
+    }
+]
