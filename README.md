@@ -56,5 +56,6 @@ Files are converted during the `plugins_loaded` action, which means that in orde
 
 
 ### 0.2.0 
-**Enhancement** Added `wp_rtm/files` filter.
-**Enhancement** Added `wp_rtm/file-{namespace}/post_save` action.
+- **Enhancement** Added `wp_rtm/files` filter.
+- **Enhancement** Added `wp_rtm/file-{namespace}/post_save` action.
+- **Enhancement** Added readme.txt and README.md files
