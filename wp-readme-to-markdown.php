@@ -256,7 +256,7 @@ class WP_Readme_To_Markdown{
       }
       $raw_toc[] = ['level' => $item_level, 'text' => trim($item_text)];
     }
-    var_dump( $raw_toc);
+    //var_dump( $raw_toc);
 
     return $file;
   }
