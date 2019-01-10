@@ -133,7 +133,7 @@ class WP_Readme_To_Markdown{
 
   private static function file_changes( $ns ){
 
-    return true;
+    //return true;
     if ( self::$built_files[$ns]['converted'] != self::$built_files[$ns]['md_contents'] ) {
       return true;
     } else {
