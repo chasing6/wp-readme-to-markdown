@@ -9,7 +9,7 @@
  * Plugin Name:       WP Readme to Markdown
  * Plugin URI:        https://github.com/chasing6/wp-readme-to-markdown
  * Description:       Converts the readme.txt file into markdown for github, etc.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Author:            Scott McCoy
  * Author URI:        https://github.com/chasing6/
  * Text Domain:       wp-rtm
@@ -133,7 +133,6 @@ class WP_Readme_To_Markdown{
 
   private static function file_changes( $ns ){
 
-    //return true;
     if ( self::$built_files[$ns]['converted'] != self::$built_files[$ns]['md_contents'] ) {
       return true;
     } else {
